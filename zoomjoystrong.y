@@ -24,29 +24,29 @@
 
 %%
 
-zoomjoystrong: sentance END
-	     | zoomjoystrong sentance END
+zoomjoystrong: sentence END
+	     | sentence zoomjoystrong END
 ;
 
-sentance: line_command END_STATEMENT
-	| point_command END_STATEMENT
-	| circle_command END_STATEMENT
-	| rectangle_command END_STATEMENT
-	| set_color END_STATEMENT
+sentence: line_command
+	| point_command
+	| circle_command
+	| rectangle_command
+	| set_color
 ;
 
-line_command: LINE INT INT INT INT 	{printf("line command");}
+line_command: LINE INT INT INT INT END_STATEMENT	{printf("line_command");}
 	    ;
 
-point_command: POINT INT INT 		{printf("point command");}
+point_command: POINT INT INT END_STATEMENT 		{printf("point_command");}
 	     ;
 
-circle_command: CIRCLE INT INT INT	{printf("circle command");}
+circle_command: CIRCLE INT INT INT END_STATEMENT	{printf("circle_command");}
 	      ;
 
-rectangle_command: RECTANGLE INT INT INT INT {printf("rectangle command");}
+rectangle_command: RECTANGLE INT INT INT INT END_STATEMENT {printf("rectangle_command");}
 		 ;
-set_color: SET_COLOR INT INT INT	{printf("set color");}
+set_color: SET_COLOR INT INT INT END_STATEMENT		{printf("set_color");}
 	 ;
 
 
