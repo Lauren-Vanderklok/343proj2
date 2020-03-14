@@ -1,0 +1,5 @@
+rectangle 0 0 1023 767;
+set_color 0 101 164;
+circle 512 384 50;
+line 512 384 0 0;
+point 623 672;
