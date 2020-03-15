@@ -4,7 +4,7 @@
 	void yyerror(const char* msg);
 	int yylex();
 %}
-
+%error-verbose
 %union {int i; float f;}
 
 %start zoomjoystrong
@@ -22,11 +22,10 @@
 %type<i> INT
 %type<f> FLOAT
 
-
 %%
 
 zoomjoystrong: sentence END
-	     | sentence zoomjoystrong END
+	     | sentence zoomjoystrong
 ;
 
 sentence: line_command
@@ -56,11 +55,12 @@ set_color: SET_COLOR INT INT INT END_STATEMENT		{printf("set_color"); set_color(
 int main(int argc, char** argv){
 	setup();
 	yyparse();
+//	finish();
 }
 
 void yyerror(const char* msg){
 	fprintf(stderr, "error: %s\n", msg);
 }
 int yywrap(void){
-	return 0;
+	return 1;
 }
